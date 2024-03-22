@@ -700,11 +700,11 @@ layout: default
 ---
 
 ```scala
-val value = 2
+val value = 42
 val x: Int :| Greater[0] = value
 ```
 <v-click>
-  <div class="absolute left-0 right-0 pl-20 bg-gray-200 text-red-600 text-left">
+  <div class="absolute left-0 right-0 pl-20 bg-gray-400 text-red-600 text-left">
     <pre>
       <code>
 `-- Constraint Error --------------------------------------------------------`
@@ -724,26 +724,37 @@ Message: Should be strictly positive
 layout: default
 ---
 
+# We have two ways
+
 ```scala
-inline val value = 2
+inline val value = 42
 val x: Int :| Greater[0] = value
 ```
+
+<div class="text-center text-2xl uppercase">– or –</div>
+
+```scala
+val value = 42
+val x: Int :| Greater[0] = value.refineUnsafe
+```
+
 
 ---
 layout: default
 ---
 
-What if the value is known at runtime?
 
 ```scala
-val value = ???
-val x: Int :| Greater[0] = value.refine
+val value = -42
+val x: Int :| Greater[0] = value.refineUnsafe
 ```
 
 <v-click>
-    <div class="w-full text-center">
-        <div class="mt-12 text-4xl text-red-600"><mdi-robot-dead-outline/> IllegalArgumentException <mdi-robot-dead-outline/></div>
+  <div class="absolute left-0 right-0 bg-gray-400 mt-12 text-4xl text-red-600 justify-center">
+    <div class="h-full w-full self-center text-center align-middle p-14">
+      <mdi-robot-dead-outline/> IllegalArgumentException <mdi-robot-dead-outline/>
     </div>
+  </div>
 </v-click>
 
 <!--
