@@ -10,7 +10,8 @@ export interface Blog {
 
 export interface Props {
   speaker: string
-  twitter: string
+  twitter: string | null
+  bluesky: string | null
   image: string
   tags: Array<string>
   job?: string
@@ -21,7 +22,8 @@ export interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  twitter: '',
+  twitter: null,
+  bluesky: null,
   job: '',
   company: '',
   mail: '',
@@ -51,11 +53,29 @@ const imageSrc = resolveAssetUrl(props.image);
       </div>
       <div class="contact flex-col w-full">
         <h3 class="uppercase">Contact</h3>
-
-        <a class="mx-2" v-if="blog" v-bind:href="blog.url" target="_blank">{{ blog.name }}</a>
-        <a class="mx-2" v-if="website" v-bind:href="website.url" target="_blank">{{ website.name }}</a>
-        <a class="mx-2" v-bind:href="'mailto:' + mail">{{ mail }}</a>
-        <a class="mx-2" v-bind:href="'https://twitter.com/' + twitter" target="_blank">@{{ twitter }}</a>
+        <div>
+          <a class="mx-2" v-if="blog" v-bind:href="blog.url" target="_blank">
+            <material-symbols-light-home-outline-rounded class="text-red-600"/>
+            {{ blog.name }}
+          </a>
+          <a class="mx-2" v-if="website" v-bind:href="website.url" target="_blank">
+            <material-symbols-light-business-center-outline-rounded class="text-red-600"/>
+            {{ website.name }}
+          </a>
+        </div>
+        <div>
+          <a class="mx-2" v-bind:href="'mailto:' + mail">
+            <material-symbols-light-alternate-email class="text-red-600"/>
+            {{ mail }}
+          </a>
+          <a class="mx-2" v-if="twitter" v-bind:href="'https://twitter.com/' + twitter" target="_blank">
+            {{ twitter }}
+          </a>
+          <a class="mx-2" v-bind:href="'https://bsky.app/' + bluesky" target="_blank">
+            <simple-icons-bluesky class="text-blue-400"/> 
+            {{ bluesky }}
+          </a>
+        </div>
       </div>
     </div>
     <div class="flex flex-col"></div>

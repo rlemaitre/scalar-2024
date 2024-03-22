@@ -12,7 +12,7 @@ info: |
   Iron is, a type constraint library that allow us to have a safe, declarative and smarter model. It enable us to have a continuous stream of valid data from our API endpoints to the database, and removed a whole class of bugs. Using advanced features like opaque types, inlines and the new macro system, it offer a true 0 cost, 0 dependency library that don’t hamper compile time.
 
   In this talk, we’ll show first the different technique we can use to apply constraints is our domains. Then, we’ll present Iron, its features, extensions, and integrations. We’ll finish by showcasing a fully-integrated constraint-enforcing app.
-author: Raphaël Lemaitre & Valentin Bergeron
+author: Raphaël Lemaitre
 presenter: true
 download: true
 export:
@@ -58,7 +58,7 @@ coverDate: ''
 <div class="flex justify-center items-center">
     <figure class="flex justify-center items-center">
       <div>
-        <img alt="Slides available at https://scalaio-2024.rlemaitre.com" src="/images/slides-url.svg" width="300"/>
+        <img alt="Slides available at https://scalaio-2024.rlemaitre.com" src="/images/qrcode-slides.svg" width="300"/>
       </div>
   </figure>
 </div>
@@ -69,15 +69,15 @@ layout: profile
 speaker: Raphael Lemaitre
 job: Senior Backend Staff Engineer
 company: Ledger
-tags: [Backend Blockchain, Scala, PostgreSQL, Pillars]
+tags: [Backend Blockchain, Scala, PostgreSQL]
 blog:
     name: rlemaitre.com
     url: https://rlemaitre.com
 website:
     name: ledger.com
     url: https://ledger.com
-twitter: rlemaitre
 mail: raphael@rlemaitre.com
+bluesky: "@rlemaitre.com"
 image: /images/rlemaitre.png
 ---
 
@@ -700,9 +700,25 @@ layout: default
 ---
 
 ```scala
-val value: Int = ???
+val value = 2
 val x: Int :| Greater[0] = value
 ```
+<v-click>
+  <div class="absolute left-0 right-0 pl-20 bg-gray-200 text-red-600 text-left">
+    <pre>
+      <code>
+`-- Constraint Error --------------------------------------------------------`
+Cannot refine value at compile-time because the predicate cannot be evaluated.
+This is likely because the condition or the input value isn't fully inlined.
+To test a constraint at runtime, use one of the `refine...` extension methods.
+Inlined input: scratch_22.sc.value
+Inlined condition: ((scratch_22.sc.value.>(0.0): scala.Boolean): scala.Boolean)
+Message: Should be strictly positive
+`----------------------------------------------------------------------------`
+      </code>
+    </pre>
+  </div>
+</v-click>
 
 ---
 layout: default
@@ -1041,17 +1057,20 @@ coverDate: ''
 ---
 
 <h1>Any questions?</h1>
-
-<div class="flex justify-center items-center">
+<div class="flex justify-center items-center text-center">
+  <div class="m-12">
     <figure class="flex justify-center items-center text-center">
-      <div>
-        <img alt="Slides available at https://scalar-2024.rlemaitre.com" src="/images/slides-url.svg" width="300"/>
-      </div>
-      <figcaption>
-          Slides available at<br/>
-          <a href="https://scalar-2024.rlemaitre.com/">https://scalar-2024.rlemaitre.com/</a>
-      </figcaption>
-  </figure>
+      <a href="https://scalar-2024.rlemaitre.com">
+        <img alt="Slides available at https://scalar-2024.rlemaitre.com" src="/images/qrcode-slides.svg" width="300"/>
+      </a>
+    </figure>
+  </div>
+  <div class="m-12">
+    <figure class="flex justify-center items-center text-center">
+      <a href="https://airtable.com/appL9ef2UT2rRXUhd/pag237lPDS5MfWusv/form">
+        <img alt="Feedback form" src="/images/qrcode-feedback.svg" width="300"/>
+      </a>
+   </figure>
+  </div>
 </div>
-
 <h1>Thank you!</h1>
